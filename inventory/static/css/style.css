@@ -1,5 +1,6 @@
 body {
     background-color: #34eb6b;
+    background-image: url("../img/bg.jpg");
 }
 
 /*Align the title to the center of the page*/
@@ -32,6 +33,10 @@ th {
     padding-right: 5px;
     padding-bottom: 20px;
     box-shadow: 12px 12px 20px 6px #2e6da4;
+}
+
+.mybutton {
+    width: 100%;
 }
 
 .header {

@@ -31,15 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'registration',
+    'inventory',
     'django.contrib.auth',
+    'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    'inventory',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +52,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'inventory_management_app.urls'
+
+LOGIN_REDIRECT_URL = 'inventory:home'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
 
 TEMPLATES = [
     {

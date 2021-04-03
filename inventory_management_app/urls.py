@@ -18,6 +18,8 @@ from django.urls import path, include
 from inventory import views
 
 urlpatterns = [
+    path('', include('django.contrib.auth.urls')),
+    path('register/', views.register, name='register'),
     path('', views.home, name="home"),
     path('list_items/', views.list_items, name="list_items"),
     path('add_item/', views.add_item, name="add_item"),
@@ -28,5 +30,4 @@ urlpatterns = [
     path('receive_items/<str:pk>/', views.receive_items, name="receive_items"),
     path('reorder_level/<str:pk>/', views.reorder_level, name="reorder_level"),
     path('admin/', admin.site.urls),
-    path('accounts/', include('registration.backends.default.urls')),
 ]

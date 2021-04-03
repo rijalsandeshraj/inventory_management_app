@@ -105,6 +105,7 @@ def issue_items(request, pk):
     form = IssueForm(request.POST or None, instance=queryset)
     if form.is_valid():
         instance = form.save(commit=False)
+        instance.receive_quantity = 0
         instance.quantity -= instance.issue_quantity
         instance.issued_by = str(request.user)
         messages.success(request, "Issued SUCCESSFULLY. " + str(instance.quantity) +
@@ -129,6 +130,7 @@ def receive_items(request, pk):
     form = ReceiveForm(request.POST or None, instance=queryset)
     if form.is_valid():
         instance = form.save(commit=False)
+        instance.issue_quantity = 0
         instance.quantity += instance.receive_quantity
         instance.save()
         messages.success(request, "Received SUCCESSFULLY. " +
@@ -163,3 +165,24 @@ def reorder_level(request, pk):
     }
 
     return render(request, "add_item.html", context)
+
+
+def register(request):
+    if request.method == 'POST':
+        user_form = UserRegistrationForm(request.POST)
+        if user_form.is_valid():
+            # Create a new user object but avoid saving it yet
+            new_user = user_form.save(commit=False)
+            # Set the chosen password
+            new_user.set_password(
+                user_form.cleaned_data['password'])
+            # Save the User object
+            new_user.save()
+            return render(request,
+                          'registration/register_done.html',
+                          {'new_user': new_user})
+    else:
+        user_form = UserRegistrationForm()
+    return render(request,
+                  'registration/register.html',
+                  {'user_form': user_form})

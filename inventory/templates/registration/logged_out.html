@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.80.0">
-    <title>Home</title>
+    <title>Logged out</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/navbar-fixed/">
 
@@ -42,33 +43,14 @@
     <!-- Custom styles for this template -->
     <link href="{% static 'css/navbar-top-fixed.css' %}" rel="stylesheet">
 </head>
+
 {% include 'navbar.html' %}
-
-<body>
-    <br>
-    <main class="container">
-        <div class="bg-light p-5 rounded">
-            <h1>{{title}}</h1>
-            <p class="lead">This application help you to manage transactions of products and show the available stock.
-            </p>
-            {% if request.user.is_authenticated %}
-            <a class="btn btn-lg btn-primary" href="/list_items" role="button">View
-                list of available products
-                &raquo;</a>
-            {% else %}
-            <a class="btn btn-lg btn-primary" href="/login" role="button">View
-                list of available products
-                &raquo;</a>
-            {% endif %}
-        </div>
-    </main>
-
-
-    <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-        crossorigin="anonymous"></script>
-
-
-</body>
-
-</html>
+<main class="container">
+    <div class="bg-light p-5 rounded">
+        <h1>Logged Out</h1>
+        <br>
+        <p>You have been successfully logged out. You can
+            <a href="{% url 'login' %}">login again</a>.
+        </p>
+    </div>
+</main>
